@@ -1,4 +1,4 @@
-package nl.ycp.demo;
+package nl.ycp.demoHighScore;
 
 import org.springframework.data.repository.CrudRepository;
 

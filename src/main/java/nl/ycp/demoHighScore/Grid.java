@@ -1,4 +1,4 @@
-package nl.ycp.demo;
+package nl.ycp.demoHighScore;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
