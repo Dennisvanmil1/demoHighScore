@@ -5,27 +5,45 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="highscores.css">
+
 <title>Insert title here</title>
 </head>
 <body>
-In jsp HighScores.jsp
+
+
+
+<p> </p>
+<h3> Current highscore ranking:</h3>
+
 <br>
 ${bestHighScore}
 ${currentScore}
 
-<p> </p>
-<h3> Current top 10 Highscores:</h3>
-
 <p>
+<table class="table table-striped">
 
+<tr>
+	<td> <b>Rank</b></td>
+	<td> <b>Player Name</b></td>
+	<td> <b>Score </b></td>
+</tr>
+
+	
 <c:forEach begin="0" end="${fn:length(nameTop10Array) - 1}" var="index">
    <tr>
+   	  <td>${index+1}</td>
       <td><c:out value="${nameTop10Array[index]}"/></td>
       <td><c:out value="${scoreTop10Array[index]}"/></td>
    </tr>
-   <br>
 </c:forEach>
+
+</table>
 
 
 

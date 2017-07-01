@@ -124,13 +124,6 @@ public class DemoApp {
 			i.addAttribute("scoreTop10Array", scoreTop10Array);
 		}
 		
-		
-			
-		
-		
-		
-		
-		
 		return "HighScores";
 		
 	}
