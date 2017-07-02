@@ -45,6 +45,22 @@ public class ControllerGrid {
 	boolean playerOneTurn = false;
 	boolean playerTwoTurn = false;
 	int columnCounterA = 7;
+	int columnCounterB = 7;
+	int columnCounterC = 7;
+	int columnCounterD = 7;
+	int columnCounterE = 7;
+	int columnCounterF = 7;
+	int columnCounterG = 7;
+	int columnCounterH = 7;
+							
+	String ColumnAArray[] = new String[8];
+	String ColumnBArray[] = new String[8];
+	String ColumnCArray[] = new String[8];
+	String ColumnDArray[] = new String[8];
+	String ColumnEArray[] = new String[8];
+	String ColumnFArray[] = new String[8];
+	String ColumnGArray[] = new String[8];
+	String ColumnHArray[] = new String[8];
 	
 	@RequestMapping(value = "/griddata", method = RequestMethod.GET)
 	public String saveScore(Model g, Grid grid, HttpServletRequest request){
@@ -59,17 +75,9 @@ public class ControllerGrid {
 		List<Grid> GridListGTop10 = gridrepo.findTop10ByOrderByColumnGDesc();
 		List<Grid> GridListHTop10 = gridrepo.findTop10ByOrderByColumnHDesc();
 		
-		String ColumnAArray[] = new String[8];
-		String ColumnBArray[] = new String[8];
-		String ColumnCArray[] = new String[8];
-		String ColumnDArray[] = new String[8];
-		String ColumnEArray[] = new String[8];
-		String ColumnFArray[] = new String[8];
-		String ColumnGArray[] = new String[8];
-		String ColumnHArray[] = new String[8];
 		
-		
-		
+	if((columnCounterA == 7)&&(columnCounterB == 7)&&(columnCounterC == 7)&&(columnCounterD==7)
+			&&(columnCounterE==7)&&(columnCounterF==7)&&(columnCounterG==7)&&(columnCounterH==7)){//initialize grid
 		for(int j=0; j < 8; j++){
 			String ColumnA = GridListATop10.get(j).getColumnA();
 			ColumnAArray[j] = ColumnA;
@@ -125,6 +133,7 @@ public class ControllerGrid {
 			System.out.println(ColumnH);
 			g.addAttribute("ColumnHArray", ColumnHArray );
 		}
+	}
 		
 		
 		
@@ -134,6 +143,7 @@ public class ControllerGrid {
 				else{
 					this.columnCounterA = 7;
 					}
+				checkPlayerTurn();
 				if(playerOneTurn){
 				grid.setToken("YYY");
 				}
@@ -144,10 +154,36 @@ public class ControllerGrid {
 				
 				//String ColumnA = GridListATop10.get(j).getColumnA();
 				String ColA = grid.getToken();
-				ColumnAArray[this.columnCounterA] = ColA;
+				this.ColumnAArray[this.columnCounterA] = ColA;
 				this.columnCounterA--;
 				System.out.println(ColA);
-				g.addAttribute("ColumnAArray", ColumnAArray );
+				
+				updateGrid(g);
+			}
+			
+			//set columnB
+			if (request.getParameter("buttonB") != null) {
+				if(this.columnCounterB >= 0){
+					}
+				else{
+					this.columnCounterB = 7;
+					}
+				checkPlayerTurn();
+				if(playerOneTurn){
+				grid.setToken("YYY");
+				}
+				else{
+					grid.setToken("ZZZ");
+					System.out.println("in else " + columnCounterB);
+				}
+				
+				//String ColumnB = GridListATop10.get(j).getColumnB();
+				String ColB = grid.getToken();
+				this.ColumnBArray[this.columnCounterB] = ColB;
+				this.columnCounterB--;
+				System.out.println(ColB);
+				
+				updateGrid(g);
 			}
 		
 		return "Grid";
@@ -159,10 +195,26 @@ public class ControllerGrid {
 		
 		
 		
+	public void checkPlayerTurn(){
+		if(playerOneTurn){
+			this.playerTwoTurn = true;
+			this.playerOneTurn = false;
+		}
+		else{
+			this.playerOneTurn = true;
+			this.playerTwoTurn = false;
+		}
+	}
 	
-	
-	public void updateGrid(){
-		//todo
+	public void updateGrid(Model g){
+		g.addAttribute("ColumnAArray", ColumnAArray );
+		g.addAttribute("ColumnBArray", ColumnBArray );
+		g.addAttribute("ColumnCArray", ColumnCArray );
+		g.addAttribute("ColumnDArray", ColumnDArray );
+		g.addAttribute("ColumnEArray", ColumnEArray );
+		g.addAttribute("ColumnFArray", ColumnFArray );
+		g.addAttribute("ColumnGArray", ColumnGArray );
+		g.addAttribute("ColumnHArray", ColumnHArray );
 		
 	}
 	

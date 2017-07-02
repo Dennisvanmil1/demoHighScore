@@ -22,14 +22,14 @@
   
   
 <form action="${pageContext.request.contextPath}">
-  		<td><button type = "submit" name = "buttonA" value = "buttonA">A</button></td>
-  		<td><button>B</button></td>
-  		<td><button>C</button></td>
-  		<td><button>D</button></td>
-  		<td><button>E</button></td>
-  		<td><button>F</button></td>
-  		<td><button>G</button></td>
-  		<td><button>H</button></td>
+  		<td><button type = "submit" name = "buttonA" value = "buttonA">Add Coin</button></td>
+  		<td><button type = "submit" name = "buttonB" value = "buttonB">Add Coin</button></td>
+  		<td><button>Add Coin</button></td>
+  		<td><button>Add Coin</button></td>
+  		<td><button>Add Coin</button></td>
+  		<td><button>Add Coin</button></td>
+  		<td><button>Add Coin</button></td>
+  		<td><button>Add Coin</button></td>
 </form>
   		
   
