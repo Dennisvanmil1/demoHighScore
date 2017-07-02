@@ -24,12 +24,12 @@
 <form action="${pageContext.request.contextPath}">
   		<td><button type = "submit" name = "buttonA" value = "buttonA">Add Coin</button></td>
   		<td><button type = "submit" name = "buttonB" value = "buttonB">Add Coin</button></td>
-  		<td><button>Add Coin</button></td>
-  		<td><button>Add Coin</button></td>
-  		<td><button>Add Coin</button></td>
-  		<td><button>Add Coin</button></td>
-  		<td><button>Add Coin</button></td>
-  		<td><button>Add Coin</button></td>
+  		<td><button type = "submit" name = "buttonC" value = "buttonC">Add Coin</button></td>
+  		<td><button type = "submit" name = "buttonD" value = "buttonD">Add Coin</button></td>
+  		<td><button type = "submit" name = "buttonE" value = "buttonE">Add Coin</button></td>
+  		<td><button type = "submit" name = "buttonF" value = "buttonF">Add Coin</button></td>
+  		<td><button type = "submit" name = "buttonG" value = "buttonG">Add Coin</button></td>
+  		<td><button type = "submit" name = "buttonH" value = "buttonH">Add Coin</button></td>
 </form>
   		
   

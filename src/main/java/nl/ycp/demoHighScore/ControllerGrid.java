@@ -42,16 +42,16 @@ public class ControllerGrid {
 		}
 	
 	
-	boolean playerOneTurn = false;
-	boolean playerTwoTurn = false;
-	int columnCounterA = 7;
-	int columnCounterB = 7;
-	int columnCounterC = 7;
-	int columnCounterD = 7;
-	int columnCounterE = 7;
-	int columnCounterF = 7;
-	int columnCounterG = 7;
-	int columnCounterH = 7;
+	private boolean playerOneTurn = false;
+	private boolean playerTwoTurn = false;
+	private int columnCounterA = 7;
+	private int columnCounterB = 7;
+	private int columnCounterC = 7;
+	private int columnCounterD = 7;
+	private int columnCounterE = 7;
+	private int columnCounterF = 7;
+	private int columnCounterG = 7;
+	private int columnCounterH = 7;
 							
 	String ColumnAArray[] = new String[8];
 	String ColumnBArray[] = new String[8];
@@ -157,11 +157,10 @@ public class ControllerGrid {
 				this.ColumnAArray[this.columnCounterA] = ColA;
 				this.columnCounterA--;
 				System.out.println(ColA);
-				
 				updateGrid(g);
 			}
 			
-			//set columnB
+			
 			if (request.getParameter("buttonB") != null) {
 				if(this.columnCounterB >= 0){
 					}
@@ -182,16 +181,149 @@ public class ControllerGrid {
 				this.ColumnBArray[this.columnCounterB] = ColB;
 				this.columnCounterB--;
 				System.out.println(ColB);
+				updateGrid(g);
+			}
+			
+			if (request.getParameter("buttonC") != null) {
+				if(this.columnCounterC >= 0){
+					}
+				else{
+					this.columnCounterC = 7;
+					}
+				checkPlayerTurn();
+				if(playerOneTurn){
+				grid.setToken("YYY");
+				}
+				else{
+					grid.setToken("ZZZ");
+					System.out.println("in else " + columnCounterC);
+				}
 				
+				//String ColumnC = GridListCTop10.get(j).getColumnC();
+				String ColC = grid.getToken();
+				this.ColumnCArray[this.columnCounterC] = ColC;
+				this.columnCounterC--;
+				System.out.println(ColC);
+				updateGrid(g);
+			}
+			
+			if (request.getParameter("buttonD") != null) {
+				if(this.columnCounterD >= 0){
+					}
+				else{
+					this.columnCounterD = 7;
+					}
+				checkPlayerTurn();
+				if(playerOneTurn){
+				grid.setToken("YYY");
+				}
+				else{
+					grid.setToken("ZZZ");
+					System.out.println("in else " + columnCounterD);
+				}
+				
+				//String ColumnD = GridListDTop10.get(j).getColumnD();
+				String ColD = grid.getToken();
+				this.ColumnDArray[this.columnCounterD] = ColD;
+				this.columnCounterD--;
+				System.out.println(ColD);
+				updateGrid(g);
+			}
+			
+			if (request.getParameter("buttonE") != null) {
+				if(this.columnCounterE >= 0){
+					}
+				else{
+					this.columnCounterE = 7;
+					}
+				checkPlayerTurn();
+				if(playerOneTurn){
+				grid.setToken("YYY");
+				}
+				else{
+					grid.setToken("ZZZ");
+					System.out.println("in else " + columnCounterE);
+				}
+				
+				//String ColumnE = GridListETop10.get(j).getColumnE();
+				String ColE = grid.getToken();
+				this.ColumnEArray[this.columnCounterE] = ColE;
+				this.columnCounterE--;
+				System.out.println(ColE);
+				updateGrid(g);
+			}
+			
+			if (request.getParameter("buttonF") != null) {
+				if(this.columnCounterF >= 0){
+					}
+				else{
+					this.columnCounterF = 7;
+					}
+				checkPlayerTurn();
+				if(playerOneTurn){
+				grid.setToken("YYY");
+				}
+				else{
+					grid.setToken("ZZZ");
+					System.out.println("in else " + columnCounterF);
+				}
+				
+				//String ColumnF = GridListFTop10.get(j).getColumnF();
+				String ColF = grid.getToken();
+				this.ColumnFArray[this.columnCounterF] = ColF;
+				this.columnCounterF--;
+				System.out.println(ColF);
+				updateGrid(g);
+			}
+			
+			if (request.getParameter("buttonG") != null) {
+				if(this.columnCounterG >= 0){
+					}
+				else{
+					this.columnCounterG = 7;
+					}
+				checkPlayerTurn();
+				if(playerOneTurn){
+				grid.setToken("YYY");
+				}
+				else{
+					grid.setToken("ZZZ");
+					System.out.println("in else " + columnCounterG);
+				}
+				
+				//String ColumnG = GridListGTop10.get(j).getColumnG();
+				String ColG = grid.getToken();
+				this.ColumnGArray[this.columnCounterG] = ColG;
+				this.columnCounterG--;
+				System.out.println(ColG);
+				updateGrid(g);
+			}
+			
+			if (request.getParameter("buttonH") != null) {
+				if(this.columnCounterH >= 0){
+					}
+				else{
+					this.columnCounterH = 7;
+					}
+				checkPlayerTurn();
+				if(playerOneTurn){
+				grid.setToken("YYY");
+				}
+				else{
+					grid.setToken("ZZZ");
+					System.out.println("in else " + columnCounterH);
+				}
+				
+				//String ColumnH = GridListHTop10.get(j).getColumnH();
+				String ColH = grid.getToken();
+				this.ColumnHArray[this.columnCounterH] = ColH;
+				this.columnCounterH--;
+				System.out.println(ColH);
 				updateGrid(g);
 			}
 		
 		return "Grid";
 	}
-	
-	
-			//System.out.println("hello");
-			//updateGrid();
 		
 		
 		
