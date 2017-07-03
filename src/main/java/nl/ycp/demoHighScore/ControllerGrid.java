@@ -24,8 +24,9 @@ public class ControllerGrid {
 		
 		
 		
-		for(int i = 0; i < 8; i++){
+		for(int i = 0; i < 6; i++){
 		Grid grid = new Grid();
+		resetColumnCounters();
 		grid.setColumnA(grid.getToken());
 		grid.setColumnB(grid.getToken());
 		grid.setColumnC(grid.getToken());
@@ -45,27 +46,27 @@ public class ControllerGrid {
 	private boolean playerOneTurn = false;
 	private boolean playerTwoTurn = false;
 	
-	private int columnCounterA = 7;
-	private int columnCounterB = 7;
-	private int columnCounterC = 7;
-	private int columnCounterD = 7;
-	private int columnCounterE = 7;
-	private int columnCounterF = 7;
-	private int columnCounterG = 7;
-	private int columnCounterH = 7;
+	private int columnCounterA = 5;
+	private int columnCounterB = 5;
+	private int columnCounterC = 5;
+	private int columnCounterD = 5;
+	private int columnCounterE = 5;
+	private int columnCounterF = 5;
+	private int columnCounterG = 5;
+	private int columnCounterH = 5;
 							
-	String ColumnAArray[] = new String[8];
-	String ColumnBArray[] = new String[8];
-	String ColumnCArray[] = new String[8];
-	String ColumnDArray[] = new String[8];
-	String ColumnEArray[] = new String[8];
-	String ColumnFArray[] = new String[8];
-	String ColumnGArray[] = new String[8];
-	String ColumnHArray[] = new String[8];
+	String ColumnAArray[] = new String[6];
+	String ColumnBArray[] = new String[6];
+	String ColumnCArray[] = new String[6];
+	String ColumnDArray[] = new String[6];
+	String ColumnEArray[] = new String[6];
+	String ColumnFArray[] = new String[6];
+	String ColumnGArray[] = new String[6];
+	String ColumnHArray[] = new String[6];
 	
 	String imgE = "<img src=\"/images/empty.jpg\">";
 	String imgR = "<img src=\"/images/red.jpg\">";
-	String imgY = "<img src=\"/images/red.jpg\">";
+	String imgY = "<img src=\"/images/yellow.jpg\">";
 	
 	@RequestMapping(value = "/griddata", method = RequestMethod.GET)
 	public String saveScore(Model g, Grid grid, HttpServletRequest request){
@@ -81,58 +82,58 @@ public class ControllerGrid {
 		List<Grid> GridListHTop10 = gridrepo.findTop10ByOrderByColumnHDesc();
 		
 		
-	if((columnCounterA == 7)&&(columnCounterB == 7)&&(columnCounterC == 7)&&(columnCounterD==7)
-			&&(columnCounterE==7)&&(columnCounterF==7)&&(columnCounterG==7)&&(columnCounterH==7)){//initialize grid
-		for(int j=0; j < 8; j++){
+	if((columnCounterA == 5)&&(columnCounterB == 5)&&(columnCounterC == 5)&&(columnCounterD==5)
+			&&(columnCounterE==5)&&(columnCounterF==5)&&(columnCounterG==5)&&(columnCounterH==5)){//initialize grid
+		for(int j=0; j < ColumnAArray.length; j++){
 			String ColumnA = GridListATop10.get(j).getColumnA();
 			ColumnAArray[j] = ColumnA;
 			System.out.println(ColumnA);
 			g.addAttribute("ColumnAArray", ColumnAArray );
 		}
 		
-		for(int j=0; j < 8; j++){
+		for(int j=0; j < ColumnBArray.length; j++){
 			String ColumnB = GridListBTop10.get(j).getColumnB();
 			ColumnBArray[j] = ColumnB;
 			System.out.println(ColumnB);
 			g.addAttribute("ColumnBArray", ColumnBArray );
 		}
 		
-		for(int j=0; j < 8; j++){
+		for(int j=0; j < ColumnCArray.length; j++){
 			String ColumnC = GridListCTop10.get(j).getColumnC();
 			ColumnCArray[j] = ColumnC;
 			System.out.println(ColumnC);
 			g.addAttribute("ColumnCArray", ColumnCArray );
 		}
 		
-		for(int j=0; j < 8; j++){
+		for(int j=0; j < ColumnDArray.length; j++){
 			String ColumnD = GridListDTop10.get(j).getColumnD();
 			ColumnDArray[j] = ColumnD;
 			System.out.println(ColumnD);
 			g.addAttribute("ColumnDArray", ColumnDArray );
 		}
 		
-		for(int j=0; j < 8; j++){
+		for(int j=0; j < ColumnEArray.length; j++){
 			String ColumnE = GridListETop10.get(j).getColumnE();
 			ColumnEArray[j] = ColumnE;
 			System.out.println(ColumnE);
 			g.addAttribute("ColumnEArray", ColumnEArray );
 		}
 		
-		for(int j=0; j < 8; j++){
+		for(int j=0; j < ColumnFArray.length; j++){
 			String ColumnF = GridListFTop10.get(j).getColumnF();
 			ColumnFArray[j] = ColumnF;
 			System.out.println(ColumnF);
 			g.addAttribute("ColumnFArray", ColumnFArray );
 		}
 		
-		for(int j=0; j < 8; j++){
+		for(int j=0; j < ColumnGArray.length; j++){
 			String ColumnG = GridListGTop10.get(j).getColumnG();
 			ColumnGArray[j] = ColumnG;
 			System.out.println(ColumnG);
 			g.addAttribute("ColumnGArray", ColumnGArray );
 		}
 		
-		for(int j=0; j < 8; j++){
+		for(int j=0; j < ColumnHArray.length; j++){
 			String ColumnH = GridListHTop10.get(j).getColumnH();
 			ColumnHArray[j] = ColumnH;
 			System.out.println(ColumnH);
@@ -146,14 +147,14 @@ public class ControllerGrid {
 				if(this.columnCounterA >= 0){
 					}
 				else{
-					this.columnCounterA = 7;
+					this.columnCounterA = 5;
 					}
 				checkPlayerTurn();
 				if(playerOneTurn){
-				grid.setToken(imgE);
+				grid.setToken(imgR);
 				}
 				else{
-					grid.setToken("ZZZ");
+					grid.setToken(imgY);
 					System.out.println("in else " + columnCounterA);
 				}
 				
@@ -170,14 +171,14 @@ public class ControllerGrid {
 				if(this.columnCounterB >= 0){
 					}
 				else{
-					this.columnCounterB = 7;
+					this.columnCounterB = 5;
 					}
 				checkPlayerTurn();
 				if(playerOneTurn){
-				grid.setToken("YYY");
+				grid.setToken(imgR);
 				}
 				else{
-					grid.setToken("ZZZ");
+					grid.setToken(imgY);
 					System.out.println("in else " + columnCounterB);
 				}
 				
@@ -193,14 +194,14 @@ public class ControllerGrid {
 				if(this.columnCounterC >= 0){
 					}
 				else{
-					this.columnCounterC = 7;
+					this.columnCounterC = 5;
 					}
 				checkPlayerTurn();
 				if(playerOneTurn){
-				grid.setToken("YYY");
+				grid.setToken(imgR);
 				}
 				else{
-					grid.setToken("ZZZ");
+					grid.setToken(imgY);
 					System.out.println("in else " + columnCounterC);
 				}
 				
@@ -216,14 +217,14 @@ public class ControllerGrid {
 				if(this.columnCounterD >= 0){
 					}
 				else{
-					this.columnCounterD = 7;
+					this.columnCounterD = 5;
 					}
 				checkPlayerTurn();
 				if(playerOneTurn){
-				grid.setToken("YYY");
+				grid.setToken(imgR);
 				}
 				else{
-					grid.setToken("ZZZ");
+					grid.setToken(imgY);
 					System.out.println("in else " + columnCounterD);
 				}
 				
@@ -239,14 +240,14 @@ public class ControllerGrid {
 				if(this.columnCounterE >= 0){
 					}
 				else{
-					this.columnCounterE = 7;
+					this.columnCounterE = 5;
 					}
 				checkPlayerTurn();
 				if(playerOneTurn){
-				grid.setToken("YYY");
+				grid.setToken(imgR);
 				}
 				else{
-					grid.setToken("ZZZ");
+					grid.setToken(imgY);
 					System.out.println("in else " + columnCounterE);
 				}
 				
@@ -262,14 +263,14 @@ public class ControllerGrid {
 				if(this.columnCounterF >= 0){
 					}
 				else{
-					this.columnCounterF = 7;
+					this.columnCounterF = 5;
 					}
 				checkPlayerTurn();
 				if(playerOneTurn){
-				grid.setToken("YYY");
+				grid.setToken(imgR);
 				}
 				else{
-					grid.setToken("ZZZ");
+					grid.setToken(imgY);
 					System.out.println("in else " + columnCounterF);
 				}
 				
@@ -285,14 +286,14 @@ public class ControllerGrid {
 				if(this.columnCounterG >= 0){
 					}
 				else{
-					this.columnCounterG = 7;
+					this.columnCounterG = 5;
 					}
 				checkPlayerTurn();
 				if(playerOneTurn){
-				grid.setToken("YYY");
+				grid.setToken(imgR);
 				}
 				else{
-					grid.setToken("ZZZ");
+					grid.setToken(imgY);
 					System.out.println("in else " + columnCounterG);
 				}
 				
@@ -308,14 +309,14 @@ public class ControllerGrid {
 				if(this.columnCounterH >= 0){
 					}
 				else{
-					this.columnCounterH = 7;
+					this.columnCounterH = 5;
 					}
 				checkPlayerTurn();
 				if(playerOneTurn){
-				grid.setToken("YYY");
+				grid.setToken(imgR);
 				}
 				else{
-					grid.setToken("ZZZ");
+					grid.setToken(imgY);
 					System.out.println("in else " + columnCounterH);
 				}
 				
@@ -352,13 +353,19 @@ public class ControllerGrid {
 		g.addAttribute("ColumnFArray", ColumnFArray );
 		g.addAttribute("ColumnGArray", ColumnGArray );
 		g.addAttribute("ColumnHArray", ColumnHArray );
+		g.addAttribute("checkWinner", checkForWinner());
 	}
 	
 	public String checkForWinner(){
 		// TODO
 		
-		String player = "player1";
-		if(playerTwoTurn){ //&& (WinnerPlayer1))
+		String player = "";
+		if(playerOneTurn)
+			player = "player1";
+		else
+			player = "player2";
+		
+		/*if(playerTwoTurn){ //&& (WinnerPlayer1))
 			return "Winner is player1";
 		}
 		
@@ -366,7 +373,14 @@ public class ControllerGrid {
 			return "Winner is player2";
 		}
 		
-		else return "It's " + player + " Turn";
+		else*/ return "It's " + player + "'s Turn";
+	}
+	
+	public void resetColumnCounters(){
+		this.columnCounterA = this.ColumnAArray.length-1;this.columnCounterB = this.ColumnBArray.length-1;
+		this.columnCounterC = this.ColumnCArray.length-1;this.columnCounterD = this.ColumnDArray.length-1;
+		this.columnCounterE = this.ColumnEArray.length-1;this.columnCounterF = this.ColumnFArray.length-1;
+		this.columnCounterG = this.ColumnGArray.length-1;this.columnCounterH = this.ColumnHArray.length-1;
 	}
 	
 	

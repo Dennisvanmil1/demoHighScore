@@ -29,7 +29,7 @@ public class Grid {
 	private String columnG;
 	private String columnH;
 	
-	private String token = "Y";
+	private String token = "<img src=\"/images/empty.jpg\">";
 	
 	public String getColumnC() {
 		return columnC;

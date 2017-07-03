@@ -6,56 +6,58 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-  <link rel="stylesheet" href="/demo/src/main/webapp/GridCSS.css" type="text/css">
+  <link rel="stylesheet" href="/GridCSS.css" type="text/css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <style>
+  .table > thead > tr > th,
+      .table > tbody > tr > th,
+      .table > tfoot > tr > th,
+      .table > thead > tr > td,
+      .table > tbody > tr > td,
+      .table > tfoot > tr > td {
+      padding: 0px !important; cellspacing: 0px !important; text-align: center !important;
+      padding-left: 0px; padding-right: 0px; background-color: #3A55EC !important;}
+  </style>
+
 </head>
 
 
 <body>
-
 <div id = "tableform" class="container">
-  <h2>Vier op een rij</h2>
-  
-  <img src="/images/empty.jpg">
-  <img src="/images/red.png">
-  <img src="/images/yellow.jpg">
-  
-  <table class="table table-bordered">
-  
-  
+<table class="table table-borderless table-condensed table-collapse">  
 <form action="${pageContext.request.contextPath}">
-  		<td><button type = "submit" name = "buttonA" value = "buttonA">Add Coin</button></td>
-  		<td><button type = "submit" name = "buttonB" value = "buttonB">Add Coin</button></td>
-  		<td><button type = "submit" name = "buttonC" value = "buttonC">Add Coin</button></td>
-  		<td><button type = "submit" name = "buttonD" value = "buttonD">Add Coin</button></td>
-  		<td><button type = "submit" name = "buttonE" value = "buttonE">Add Coin</button></td>
-  		<td><button type = "submit" name = "buttonF" value = "buttonF">Add Coin</button></td>
-  		<td><button type = "submit" name = "buttonG" value = "buttonG">Add Coin</button></td>
-  		<td><button type = "submit" name = "buttonH" value = "buttonH">Add Coin</button></td>
+  		<td><button type = "submit" name = "buttonA" value = "buttonA"><b>Insert Token</b></button></td>
+  		<td><button type = "submit" name = "buttonB" value = "buttonB"><b>Insert Token</b></button></td>
+  		<td><button type = "submit" name = "buttonC" value = "buttonC"><b>Insert Token</b></button></td>
+  		<td><button type = "submit" name = "buttonD" value = "buttonD"><b>Insert Token</b></button></td>
+  		<td><button type = "submit" name = "buttonE" value = "buttonE"><b>Insert Token</b></button></td>
+  		<td><button type = "submit" name = "buttonF" value = "buttonF"><b>Insert Token</b></button></td>
+  		<td><button type = "submit" name = "buttonG" value = "buttonG"><b>Insert Token</b></button></td>
+  		<td><button type = "submit" name = "buttonH" value = "buttonH"><b>Insert Token</b></button></td>
 </form>
   		
   
   	<c:forEach begin="0" end="${fn:length(ColumnAArray)-1}" var="index">
    <tr>
       <td>${ColumnAArray[index]}</td>
-      <td><c:out value="${ColumnBArray[index]}"/></td>
-      <td><c:out value="${ColumnCArray[index]}"/></td>
-      <td><c:out value="${ColumnDArray[index]}"/></td>
-      <td><c:out value="${ColumnEArray[index]}"/></td>
-      <td><c:out value="${ColumnFArray[index]}"/></td>
-      <td><c:out value="${ColumnGArray[index]}"/></td>
-      <td><c:out value="${ColumnHArray[index]}"/></td>
+      <td>${ColumnBArray[index]}</td>
+      <td>${ColumnCArray[index]}</td>
+      <td>${ColumnDArray[index]}</td>
+      <td>${ColumnEArray[index]}</td>
+      <td>${ColumnFArray[index]}</td>
+      <td>${ColumnGArray[index]}</td>
+      <td>${ColumnHArray[index]}</td>
       
    </tr>
    <br>
 </c:forEach>
 
-   
-  
-  
-  </table>                                         
+</table>   
+<h2>Vier op een rij. </h2>${checkWinner}                                 
   
 </div>
 
