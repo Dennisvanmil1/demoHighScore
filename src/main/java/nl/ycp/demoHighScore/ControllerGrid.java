@@ -167,6 +167,8 @@ public class ControllerGrid {
 				this.ColumnAArray[this.columnCounterA] = ColA;
 				this.columnCounterA--;
 				System.out.println(ColA);
+				checkWinnerAllVerticalArrays(0);
+				checkWinnerAllHorizontalArrays();
 				updateGrid(g);
 			}
 			
@@ -191,6 +193,8 @@ public class ControllerGrid {
 				this.ColumnBArray[this.columnCounterB] = ColB;
 				this.columnCounterB--;
 				System.out.println(ColB);
+				checkWinnerAllVerticalArrays(1);
+				checkWinnerAllHorizontalArrays();
 				updateGrid(g);
 			}
 			
@@ -214,6 +218,8 @@ public class ControllerGrid {
 				this.ColumnCArray[this.columnCounterC] = ColC;
 				this.columnCounterC--;
 				System.out.println(ColC);
+				checkWinnerAllVerticalArrays(2);
+				checkWinnerAllHorizontalArrays();
 				updateGrid(g);
 			}
 			
@@ -237,6 +243,8 @@ public class ControllerGrid {
 				this.ColumnDArray[this.columnCounterD] = ColD;
 				this.columnCounterD--;
 				System.out.println(ColD);
+				checkWinnerAllVerticalArrays(3);
+				checkWinnerAllHorizontalArrays();
 				updateGrid(g);
 			}
 			
@@ -260,6 +268,8 @@ public class ControllerGrid {
 				this.ColumnEArray[this.columnCounterE] = ColE;
 				this.columnCounterE--;
 				System.out.println(ColE);
+				checkWinnerAllVerticalArrays(4);
+				checkWinnerAllHorizontalArrays();
 				updateGrid(g);
 			}
 			
@@ -283,6 +293,8 @@ public class ControllerGrid {
 				this.ColumnFArray[this.columnCounterF] = ColF;
 				this.columnCounterF--;
 				System.out.println(ColF);
+				checkWinnerAllVerticalArrays(5);
+				checkWinnerAllHorizontalArrays();
 				updateGrid(g);
 			}
 			
@@ -306,6 +318,8 @@ public class ControllerGrid {
 				this.ColumnGArray[this.columnCounterG] = ColG;
 				this.columnCounterG--;
 				System.out.println(ColG);
+				checkWinnerAllVerticalArrays(6);
+				checkWinnerAllHorizontalArrays();
 				updateGrid(g);
 			}
 			
@@ -329,6 +343,8 @@ public class ControllerGrid {
 				this.ColumnHArray[this.columnCounterH] = ColH;
 				this.columnCounterH--;
 				System.out.println(ColH);
+				checkWinnerAllVerticalArrays(7);
+				checkWinnerAllHorizontalArrays();
 				updateGrid(g);
 			}
 		
@@ -362,7 +378,7 @@ public class ControllerGrid {
 	
 	public String printWinner(){
 		//verticaal
-		String ColumnAArrayString = "";
+		/*String ColumnAArrayString = "";
 		for(String i : ColumnAArray){
 			ColumnAArrayString = ColumnAArrayString.concat(i);
 			if(ColumnAArrayString.contains(imgR + imgR + imgR + imgR))
@@ -378,7 +394,7 @@ public class ControllerGrid {
 				this.winnerRed = true;
 			else if(ColumnBArrayString.contains(imgY + imgY + imgY + imgY))
 				this.winnerYellow = true;
-		}
+		}*/
 		
 		String player = "";
 		if(playerOneTurn)
@@ -386,22 +402,54 @@ public class ControllerGrid {
 		else
 			player = "Red";
 		
-		if(winnerRed){
+		if((winnerRed) && (!winnerYellow)){
 			return "Red player won the game";
 		}
 		
-		else if(winnerYellow){
+		else if((winnerYellow) && (!winnerRed)){
 			return "Yellow player won the game";
 		}
 		
 		else return "It's " + player + "'s Turn";
 	}
 	
-	public void resetColumnCounters(){
+	public void resetColumnCounters(){//counter used to decrement array index after Token is inserted
 		this.columnCounterA = this.ColumnAArray.length-1;this.columnCounterB = this.ColumnBArray.length-1;
 		this.columnCounterC = this.ColumnCArray.length-1;this.columnCounterD = this.ColumnDArray.length-1;
 		this.columnCounterE = this.ColumnEArray.length-1;this.columnCounterF = this.ColumnFArray.length-1;
 		this.columnCounterG = this.ColumnGArray.length-1;this.columnCounterH = this.ColumnHArray.length-1;
+	}
+	
+	public void checkWinnerAllVerticalArrays(int X){//vertical
+		String[][] AllColumnArr = {ColumnAArray,ColumnBArray, ColumnCArray, ColumnDArray, ColumnEArray, ColumnFArray, ColumnGArray, ColumnHArray};
+		String strCheckWinner="";
+		for(String i : AllColumnArr[X]){
+			strCheckWinner = strCheckWinner.concat(i);
+			if(strCheckWinner.contains(imgR + imgR + imgR + imgR))
+				this.winnerRed = true;
+			else if(strCheckWinner.contains(imgY + imgY + imgY + imgY))
+				this.winnerYellow = true;
+		}
+	}
+	
+	public void checkWinnerAllHorizontalArrays(){//horizontal
+		String[][] AllColumnArr = {ColumnAArray, ColumnBArray, ColumnCArray, ColumnDArray, ColumnEArray, ColumnFArray, ColumnGArray, ColumnHArray};
+		String s="";
+		for(int Y=0; Y < ColumnAArray.length; Y++){
+			for(int i = 0; i < AllColumnArr.length; i++){
+				s = ColumnAArray[Y].concat(ColumnBArray[Y]).concat(ColumnCArray[Y]).concat(ColumnDArray[Y])
+					.concat(ColumnEArray[Y]).concat(ColumnFArray[Y]).concat(ColumnGArray[Y]).concat(ColumnHArray[Y]);
+				if(s.contains(imgR + imgR + imgR + imgR))
+					this.winnerRed = true;
+				else if(s.contains(imgY + imgY + imgY + imgY))
+					this.winnerYellow = true;
+			}
+			
+		}
+	}
+	
+	public void checkWinnerAllDiagonalArrays(){
+		//TODO
 	}
 	
 	
