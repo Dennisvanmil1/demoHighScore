@@ -22,11 +22,13 @@ public class ControllerGrid {
 	@RequestMapping(value = "/grid", method = RequestMethod.GET)
 	public String saveScorePost(Model g){
 		
-		
+		resetColumnCounters();
+		this.winnerRed = false;
+		this.winnerYellow = false;
 		
 		for(int i = 0; i < 6; i++){
 		Grid grid = new Grid();
-		resetColumnCounters();
+		
 		grid.setColumnA(grid.getToken());
 		grid.setColumnB(grid.getToken());
 		grid.setColumnC(grid.getToken());
@@ -45,6 +47,8 @@ public class ControllerGrid {
 	//field variables
 	private boolean playerOneTurn = false;
 	private boolean playerTwoTurn = false;
+	private boolean winnerRed = false;
+	private boolean winnerYellow = false;
 	
 	private int columnCounterA = 5;
 	private int columnCounterB = 5;
@@ -353,11 +357,18 @@ public class ControllerGrid {
 		g.addAttribute("ColumnFArray", ColumnFArray );
 		g.addAttribute("ColumnGArray", ColumnGArray );
 		g.addAttribute("ColumnHArray", ColumnHArray );
-		g.addAttribute("checkWinner", checkForWinner());
+		g.addAttribute("checkWinner", printWinner());
 	}
 	
-	public String checkForWinner(){
-		// TODO
+	public String printWinner(){
+		String ColumnAArrayString = "";
+		for(String i : ColumnAArray){
+			ColumnAArrayString = ColumnAArrayString.concat(i);
+			if(ColumnAArrayString.contains(imgR + imgR + imgR + imgR))
+				this.winnerRed = true;
+			else if(ColumnAArrayString.contains(imgY + imgY + imgY + imgY))
+				this.winnerYellow = true;
+		}
 		
 		String player = "";
 		if(playerOneTurn)
@@ -365,15 +376,15 @@ public class ControllerGrid {
 		else
 			player = "player2";
 		
-		/*if(playerTwoTurn){ //&& (WinnerPlayer1))
-			return "Winner is player1";
+		if(winnerRed){
+			return "Red player won the game";
 		}
 		
-		else if(playerOneTurn){ //&& (WinnerPlayer2))
-			return "Winner is player2";
+		else if(winnerYellow){
+			return "Yellow player won the game";
 		}
 		
-		else*/ return "It's " + player + "'s Turn";
+		else return "It's " + player + "'s Turn";
 	}
 	
 	public void resetColumnCounters(){

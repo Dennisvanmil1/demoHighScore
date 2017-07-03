@@ -22,14 +22,11 @@
       padding: 0px !important; cellspacing: 0px !important; text-align: center !important;
       padding-left: 0px; padding-right: 0px; background-color: #3A55EC !important;}
   </style>
-
-</head>
-
-
-<body>
-<div id = "tableform" class="container">
-<table class="table table-borderless table-condensed table-collapse">  
-<form action="${pageContext.request.contextPath}">
+	</head>
+		<body>
+			<div id = "tableform" class="container">
+				<table class="table table-borderless table-condensed table-collapse">  
+					<form action="${pageContext.request.contextPath}">
   		<td><button type = "submit" name = "buttonA" value = "buttonA"><b>Insert Token</b></button></td>
   		<td><button type = "submit" name = "buttonB" value = "buttonB"><b>Insert Token</b></button></td>
   		<td><button type = "submit" name = "buttonC" value = "buttonC"><b>Insert Token</b></button></td>
@@ -38,10 +35,8 @@
   		<td><button type = "submit" name = "buttonF" value = "buttonF"><b>Insert Token</b></button></td>
   		<td><button type = "submit" name = "buttonG" value = "buttonG"><b>Insert Token</b></button></td>
   		<td><button type = "submit" name = "buttonH" value = "buttonH"><b>Insert Token</b></button></td>
-</form>
-  		
-  
-  	<c:forEach begin="0" end="${fn:length(ColumnAArray)-1}" var="index">
+					</form>
+ 				<c:forEach begin="0" end="${fn:length(ColumnAArray)-1}" var="index">
    <tr>
       <td>${ColumnAArray[index]}</td>
       <td>${ColumnBArray[index]}</td>
@@ -50,16 +45,12 @@
       <td>${ColumnEArray[index]}</td>
       <td>${ColumnFArray[index]}</td>
       <td>${ColumnGArray[index]}</td>
-      <td>${ColumnHArray[index]}</td>
-      
+      <td>${ColumnHArray[index]}</td>   
    </tr>
    <br>
-</c:forEach>
-
-</table>   
-<h2>Vier op een rij. </h2>${checkWinner}                                 
-  
-</div>
-
-</body>
+				</c:forEach>
+			</table>   
+			${checkWinner}                                 
+  		</div>
+	</body>
 </html>
