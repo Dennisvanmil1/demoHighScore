@@ -50,7 +50,7 @@
    <br>
 				</c:forEach>
 			</table>   
-			${checkWinner}                                 
+			<b>${checkWinner}</b>                                
   		</div>
 	</body>
 </html>

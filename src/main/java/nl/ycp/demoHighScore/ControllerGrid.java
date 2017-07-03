@@ -361,6 +361,7 @@ public class ControllerGrid {
 	}
 	
 	public String printWinner(){
+		//verticaal
 		String ColumnAArrayString = "";
 		for(String i : ColumnAArray){
 			ColumnAArrayString = ColumnAArrayString.concat(i);
@@ -370,11 +371,20 @@ public class ControllerGrid {
 				this.winnerYellow = true;
 		}
 		
+		String ColumnBArrayString = "";
+		for(String i : ColumnBArray){
+			ColumnBArrayString = ColumnBArrayString.concat(i);
+			if(ColumnBArrayString.contains(imgR + imgR + imgR + imgR))
+				this.winnerRed = true;
+			else if(ColumnBArrayString.contains(imgY + imgY + imgY + imgY))
+				this.winnerYellow = true;
+		}
+		
 		String player = "";
 		if(playerOneTurn)
-			player = "player1";
+			player = "Yellow";
 		else
-			player = "player2";
+			player = "Red";
 		
 		if(winnerRed){
 			return "Red player won the game";
