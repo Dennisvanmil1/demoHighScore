@@ -41,9 +41,10 @@ public class ControllerGrid {
 		return "redirect:/griddata";
 		}
 	
-	
+	//field variables
 	private boolean playerOneTurn = false;
 	private boolean playerTwoTurn = false;
+	
 	private int columnCounterA = 7;
 	private int columnCounterB = 7;
 	private int columnCounterC = 7;
@@ -61,6 +62,10 @@ public class ControllerGrid {
 	String ColumnFArray[] = new String[8];
 	String ColumnGArray[] = new String[8];
 	String ColumnHArray[] = new String[8];
+	
+	String imgE = "<img src=\"/images/empty.jpg\">";
+	String imgR = "<img src=\"/images/red.jpg\">";
+	String imgY = "<img src=\"/images/red.jpg\">";
 	
 	@RequestMapping(value = "/griddata", method = RequestMethod.GET)
 	public String saveScore(Model g, Grid grid, HttpServletRequest request){
@@ -134,9 +139,9 @@ public class ControllerGrid {
 			g.addAttribute("ColumnHArray", ColumnHArray );
 		}
 	}
-		
-		
-		
+	
+	
+	
 			if (request.getParameter("buttonA") != null) {
 				if(this.columnCounterA >= 0){
 					}
@@ -145,7 +150,7 @@ public class ControllerGrid {
 					}
 				checkPlayerTurn();
 				if(playerOneTurn){
-				grid.setToken("YYY");
+				grid.setToken(imgE);
 				}
 				else{
 					grid.setToken("ZZZ");
@@ -347,7 +352,21 @@ public class ControllerGrid {
 		g.addAttribute("ColumnFArray", ColumnFArray );
 		g.addAttribute("ColumnGArray", ColumnGArray );
 		g.addAttribute("ColumnHArray", ColumnHArray );
+	}
+	
+	public String checkForWinner(){
+		// TODO
 		
+		String player = "player1";
+		if(playerTwoTurn){ //&& (WinnerPlayer1))
+			return "Winner is player1";
+		}
+		
+		else if(playerOneTurn){ //&& (WinnerPlayer2))
+			return "Winner is player2";
+		}
+		
+		else return "It's " + player + " Turn";
 	}
 	
 	

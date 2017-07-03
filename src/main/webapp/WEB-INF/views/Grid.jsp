@@ -18,6 +18,10 @@
 <div id = "tableform" class="container">
   <h2>Vier op een rij</h2>
   
+  <img src="/images/empty.jpg">
+  <img src="/images/red.png">
+  <img src="/images/yellow.jpg">
+  
   <table class="table table-bordered">
   
   
@@ -35,7 +39,7 @@
   
   	<c:forEach begin="0" end="${fn:length(ColumnAArray)-1}" var="index">
    <tr>
-      <td><c:out value="${ColumnAArray[index]}"/></td>
+      <td>${ColumnAArray[index]}</td>
       <td><c:out value="${ColumnBArray[index]}"/></td>
       <td><c:out value="${ColumnCArray[index]}"/></td>
       <td><c:out value="${ColumnDArray[index]}"/></td>
