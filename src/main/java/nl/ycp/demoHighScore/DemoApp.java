@@ -107,23 +107,24 @@ public class DemoApp {
 		i.addAttribute("currentScore", currentScore);
 		}
 		
-		List<HighScore> hsListTop10 = hsrepo.findTop10ByOrderByScoreDesc();
-		String nameTop10Array[] = new String[10];
+		
+		List<HighScore> hsListTop10 = new ArrayList<>();
+		
+		if(hsrepo.count() <= 10){
+			hsListTop10 = hsrepo.findAllByOrderByScoreDesc();
+		}
+		else{
+		hsListTop10 = hsrepo.findTop10ByOrderByScoreDesc();
+		}
+		/*String nameTop10Array[] = new String[10];
 		int scoreTop10Array[] = new int[10];
 		for(int j=0; j < 10; j++){
 			String nameTop10 = hsListTop10.get(j).getName();
 			nameTop10Array[j] = nameTop10;
-			System.out.println(nameTop10);
-			i.addAttribute("nameTop10Array", nameTop10Array );
-		}
+			System.out.println(nameTop10);*/
+			i.addAttribute("hsListTop10", hsListTop10 );
 		
-		for(int j=0; j<10; j++){
-			int scoreTop10 = hsListTop10.get(j).getScore();
-			scoreTop10Array[j] = scoreTop10;
-			System.out.println(scoreTop10);
-			i.addAttribute("scoreTop10Array", scoreTop10Array);
-		}
-		
+	
 		return "HighScores";
 		
 	}
@@ -145,6 +146,9 @@ public class DemoApp {
 		public int loadOldHighScore(){//works
 			List<HighScore> hsList = hsrepo.findAllByOrderByOldHighScoreDesc();
 			 
+			if(hsList.isEmpty()){
+				return 0;
+			}
 			 return hsList.get(0).getOldHighScore();
 		}
 		

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import nl.ycp.demoHighScore.model.Grid;
 import nl.ycp.demoHighScore.model.GridRepository;
+import javax.script.*;
 
 @Controller
 public class ControllerGrid {
@@ -414,10 +415,12 @@ public class ControllerGrid {
 			player = "Red";
 		
 		if((winnerRed) && (!winnerYellow)){
+			//finishGame();
 			return "Red player won the game";
 		}
 		
 		else if((winnerYellow) && (!winnerRed)){
+			//finishGame();
 			return "Yellow player won the game";
 		}
 		
@@ -476,25 +479,28 @@ public class ControllerGrid {
 	
 	public void cDiag(int iX, int iY){
 		//northwest to southeast
-		String s = "";
+		String s1 = "";
+		String s2 = "";
 		
 		String[][] AllColumnArr = {ColumnAArray, ColumnBArray, ColumnCArray, ColumnDArray, ColumnEArray, ColumnFArray, ColumnGArray, ColumnHArray};
 		for(int X = iX, Y = iY; ((X < AllColumnArr.length) && (Y < ColumnAArray.length)); X++, Y++){
-		s = s.concat(AllColumnArr[X][Y]);
-		if(s.contains(imgR + imgR + imgR + imgR))
+		s1 = s1.concat(AllColumnArr[X][Y]);
+		if(s1.contains(imgR + imgR + imgR + imgR))
 			this.winnerRed = true;
-		else if(s.contains(imgY + imgY + imgY + imgY))
+		else if(s1.contains(imgY + imgY + imgY + imgY))
 			this.winnerYellow = true;
 		}
 		
-		for(int X = iX, Y = iY; ((X > 0) && (Y < ColumnAArray.length)); X--, Y++){
-			s = s.concat(AllColumnArr[X][Y]);
-			if(s.contains(imgR + imgR + imgR + imgR))
+		for(int X = iX, Y = iY; ((X >= 0) && (Y < ColumnAArray.length)); X--, Y++){
+			s2 = s2.concat(AllColumnArr[X][Y]); 
+			if(s2.contains(imgR + imgR + imgR + imgR))
 				this.winnerRed = true;
-			else if(s.contains(imgY + imgY + imgY + imgY))
+			else if(s2.contains(imgY + imgY + imgY + imgY))
 				this.winnerYellow = true;
 			}
 	}
+	
+	
 	
 	
 	

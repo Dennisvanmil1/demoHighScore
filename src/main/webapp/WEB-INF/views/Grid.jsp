@@ -50,7 +50,25 @@
    <br>
 				</c:forEach>
 			</table>   
-			<b>${checkWinner}</b>                                
+			<b>${checkWinner}</b>
+			
+			
+			
+<p id="endGame"></p>
+<script>
+function finishGame() {
+    var txt;
+    if (confirm("Would you like to save your score?") == true) {
+       window.location.href = "http://localhost:8080/savescore";
+    } else {
+       window.location.href = "http://localhost:8080/grid";
+    }
+    document.getElementById("endGame").innerHTML = txt;
+}
+if("${checkWinner}" == ("Red player won the game") || "${checkWinner}" == ("Yellow player won the game")){
+	finishGame();
+}
+</script>                                
   		</div>
 	</body>
 </html>

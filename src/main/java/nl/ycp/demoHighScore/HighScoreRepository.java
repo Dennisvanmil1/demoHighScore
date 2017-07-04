@@ -31,6 +31,8 @@ public interface HighScoreRepository extends CrudRepository<HighScore, Long> {
 
 	List<HighScore> findTop10ByOrderByScoreDesc();
 
+	List<HighScore> findAllByOrderByScoreDesc();
+
 	//@Query("SELECT p FROM HighScore hs WHERE LOWER(p.Id) = LOWER(:Id)")
 	//public List<HighScore> find(@Param("Id") long Id);
 

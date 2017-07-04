@@ -34,12 +34,14 @@ ${currentScore}
 	<td> <b>Score </b></td>
 </tr>
 
+<c:forEach var="hsScore" items="${hsListTop10}" varStatus="loop">
+
 	
-<c:forEach begin="0" end="${fn:length(nameTop10Array) - 1}" var="index">
+
    <tr>
-   	  <td>${index+1}</td>
-      <td><c:out value="${nameTop10Array[index]}"/></td>
-      <td><c:out value="${scoreTop10Array[index]}"/></td>
+   	  <td>${loop.index+1}</td>
+      <td><c:out value="${hsScore.name}"/></td>
+      <td><c:out value="${hsScore.score}"/></td>
    </tr>
 </c:forEach>
 
