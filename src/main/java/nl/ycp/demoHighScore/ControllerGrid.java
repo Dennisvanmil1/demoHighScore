@@ -10,6 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import nl.ycp.demoHighScore.model.Grid;
+import nl.ycp.demoHighScore.model.GridRepository;
+
 @Controller
 public class ControllerGrid {
 
@@ -169,6 +172,7 @@ public class ControllerGrid {
 				System.out.println(ColA);
 				checkWinnerAllVerticalArrays(0);
 				checkWinnerAllHorizontalArrays();
+				checkWinnerAllDiagonalArray();
 				updateGrid(g);
 			}
 			
@@ -195,6 +199,7 @@ public class ControllerGrid {
 				System.out.println(ColB);
 				checkWinnerAllVerticalArrays(1);
 				checkWinnerAllHorizontalArrays();
+				checkWinnerAllDiagonalArray();
 				updateGrid(g);
 			}
 			
@@ -220,6 +225,7 @@ public class ControllerGrid {
 				System.out.println(ColC);
 				checkWinnerAllVerticalArrays(2);
 				checkWinnerAllHorizontalArrays();
+				checkWinnerAllDiagonalArray();
 				updateGrid(g);
 			}
 			
@@ -245,6 +251,7 @@ public class ControllerGrid {
 				System.out.println(ColD);
 				checkWinnerAllVerticalArrays(3);
 				checkWinnerAllHorizontalArrays();
+				checkWinnerAllDiagonalArray();
 				updateGrid(g);
 			}
 			
@@ -270,6 +277,7 @@ public class ControllerGrid {
 				System.out.println(ColE);
 				checkWinnerAllVerticalArrays(4);
 				checkWinnerAllHorizontalArrays();
+				checkWinnerAllDiagonalArray();
 				updateGrid(g);
 			}
 			
@@ -295,6 +303,7 @@ public class ControllerGrid {
 				System.out.println(ColF);
 				checkWinnerAllVerticalArrays(5);
 				checkWinnerAllHorizontalArrays();
+				checkWinnerAllDiagonalArray();
 				updateGrid(g);
 			}
 			
@@ -320,6 +329,7 @@ public class ControllerGrid {
 				System.out.println(ColG);
 				checkWinnerAllVerticalArrays(6);
 				checkWinnerAllHorizontalArrays();
+				checkWinnerAllDiagonalArray();
 				updateGrid(g);
 			}
 			
@@ -345,6 +355,7 @@ public class ControllerGrid {
 				System.out.println(ColH);
 				checkWinnerAllVerticalArrays(7);
 				checkWinnerAllHorizontalArrays();
+				checkWinnerAllDiagonalArray();
 				updateGrid(g);
 			}
 		
@@ -446,10 +457,43 @@ public class ControllerGrid {
 			}
 			
 		}
+	
+		
 	}
 	
-	public void checkWinnerAllDiagonalArrays(){
-		//TODO
+	public void checkWinnerAllDiagonalArray(){
+		
+		
+		String[][] AllColumnArr = {ColumnAArray, ColumnBArray, ColumnCArray, ColumnDArray, ColumnEArray, ColumnFArray, ColumnGArray, ColumnHArray};
+		
+		for(int i = 0; i<AllColumnArr.length; i++){
+			for(int j = 0; j<ColumnAArray.length; j++){
+				cDiag(i,j);
+			}
+		}
+		
+	}
+	
+	public void cDiag(int iX, int iY){
+		//northwest to southeast
+		String s = "";
+		
+		String[][] AllColumnArr = {ColumnAArray, ColumnBArray, ColumnCArray, ColumnDArray, ColumnEArray, ColumnFArray, ColumnGArray, ColumnHArray};
+		for(int X = iX, Y = iY; ((X < AllColumnArr.length) && (Y < ColumnAArray.length)); X++, Y++){
+		s = s.concat(AllColumnArr[X][Y]);
+		if(s.contains(imgR + imgR + imgR + imgR))
+			this.winnerRed = true;
+		else if(s.contains(imgY + imgY + imgY + imgY))
+			this.winnerYellow = true;
+		}
+		
+		for(int X = iX, Y = iY; ((X > 0) && (Y < ColumnAArray.length)); X--, Y++){
+			s = s.concat(AllColumnArr[X][Y]);
+			if(s.contains(imgR + imgR + imgR + imgR))
+				this.winnerRed = true;
+			else if(s.contains(imgY + imgY + imgY + imgY))
+				this.winnerYellow = true;
+			}
 	}
 	
 	
