@@ -1,54 +1,31 @@
 package nl.ycp.demoHighScore;
 
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import nl.ycp.demoHighScore.model.HighScore;
+import nl.ycp.demoHighScore.model.HighScoreRepository;
+
 @Controller
 public class DemoApp {
-	
-	@Autowired
-	private SnackRepository repo;
-	
-	@Autowired
-	private DrankRepository repos;
-	
 	@Autowired
 	private HighScoreRepository hsrepo;
 	
 	private int oldScore;
 	
-	
-//	HighScore hs = new HighScore();
-	
 	@RequestMapping(value = "/savescore", method = RequestMethod.GET)
 	public String saveScore(Model m){
-		
-		
-		/*DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-		LocalDateTime dateTime = LocalDateTime.now();
-		String ldt = dateTime.format(formatter);*/
-		//String ldt = "Today";
-		
-		/*hs.setName("Yaela");
-		hs.setDate("Today");
-		hs.setScore(461);*/
-		//to be inserted into database after game finishes	
-		
+
 		return "SaveScore";
 		}
 	
@@ -60,12 +37,13 @@ public class DemoApp {
 		setOldScore(loadOldHighScore());
 		hs.setScore(score);
 		hs.setName(name);
+		
 		if(score > this.oldScore){
-		hs.setOldHighScore(score);	
-		}
-		else{
+			hs.setOldHighScore(score);	
+		} else {
 			hs.setOldHighScore(loadOldHighScore());
 		}
+		
 		hsrepo.save(hs);
 		return "redirect:/highscore";
 	}
@@ -100,11 +78,9 @@ public class DemoApp {
 		
 		String bestHighScore = "New best highscore of "+ points + " points by "+ name + " !!!";
 		i.addAttribute("bestHighScore", bestHighScore);
-		}
-		
-		else{
-		String currentScore = "" + name + " scored "+ points + " points. ";
-		i.addAttribute("currentScore", currentScore);
+		} else {
+			String currentScore = "" + name + " scored "+ points + " points. ";
+			i.addAttribute("currentScore", currentScore);
 		}
 		
 		
@@ -112,38 +88,18 @@ public class DemoApp {
 		
 		if(hsrepo.count() <= 10){
 			hsListTop10 = hsrepo.findAllByOrderByScoreDesc();
+		} else {
+			hsListTop10 = hsrepo.findTop10ByOrderByScoreDesc();
 		}
-		else{
-		hsListTop10 = hsrepo.findTop10ByOrderByScoreDesc();
-		}
-		/*String nameTop10Array[] = new String[10];
-		int scoreTop10Array[] = new int[10];
-		for(int j=0; j < 10; j++){
-			String nameTop10 = hsListTop10.get(j).getName();
-			nameTop10Array[j] = nameTop10;
-			System.out.println(nameTop10);*/
-			i.addAttribute("hsListTop10", hsListTop10 );
+
+		i.addAttribute("hsListTop10", hsListTop10 );
 		
 	
 		return "HighScores";
 		
 	}
-	
 
-	
-	
-		/*public String findName(){//works
-			 List<HighScore> hsList = hsrepo.findByScoreOrderByNameAsc(hs.getScore());
-			 return (hsList.get(0).getName());
-			 }
-		
-		/*public String findTopScores(){//check
-			List<HighScore> hsList = hsrepo.findByScoreOrderByScoreAsc();
-			return (hsList.get(0).getName());
-		}*/
-		
-		
-		public int loadOldHighScore(){//works
+			public int loadOldHighScore(){//works
 			List<HighScore> hsList = hsrepo.findAllByOrderByOldHighScoreDesc();
 			 
 			if(hsList.isEmpty()){
@@ -151,82 +107,4 @@ public class DemoApp {
 			}
 			 return hsList.get(0).getOldHighScore();
 		}
-		
-			
-			
-			
-
-			
-			
-		
-		
-		
-		
-		
-	
-	
-	
-	
-	
-	
-	///////////////////////////////////////////////////////////////////////////////////////////////////////
-	@RequestMapping("/welcome")
-	public @ResponseBody String welcome(){
-		return "Hello World";
-	}
-	
-	@RequestMapping("/")
-	public @ResponseBody String page1(){
-		return "start page";
-	}
-	
-	@RequestMapping("/snack")
-	public @ResponseBody String nieuweSnack(){
-		
-		Snack d = new Snack();
-		d.setName("frikandel");
-		d.setPrice(1000);
-		d.setHealthy(true);
-		d.setFatPercent(90);
-		
-		repo.save(d);
-		return "nieuwe snack gemaakt";
-	}
-		
-		
-		
-		
-		@RequestMapping("/drank")
-		public @ResponseBody String nieuweDrank(){
-			
-		Drank a = new Drank();
-		a.setName("cola");
-		a.setAlcohol(100);
-		repos.save(a);
-		return "nieuwe drank gemaakt";
-	}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
-	
-	@RequestMapping("/doei")
-	public @ResponseBody String bye(){
-		
-		return "Bye World";
-	}
-	
-	@RequestMapping("/hello")
-	public String overzicht(Model model) {
-		model.addAttribute("hoi", "helloooo, world!");
-	        return "Hello";
-	}
-	
-
 }

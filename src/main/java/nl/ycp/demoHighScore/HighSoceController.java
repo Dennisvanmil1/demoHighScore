@@ -1,4 +1,4 @@
-package nl.ycp.demohighscore;
+package nl.ycp.demoHighScore;
 
 import java.util.List;
 
