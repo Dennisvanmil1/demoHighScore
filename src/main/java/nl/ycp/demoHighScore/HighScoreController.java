@@ -14,7 +14,7 @@ import nl.ycp.demoHighScore.model.HighScore;
 import nl.ycp.demoHighScore.model.HighScoreRepository;
 
 @Controller
-public class HighSoceController {
+public class HighScoreController {
 	@Autowired
 	private HighScoreRepository hsRepo;
 
