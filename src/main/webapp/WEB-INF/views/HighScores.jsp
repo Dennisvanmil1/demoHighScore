@@ -34,7 +34,7 @@ ${currentScore}
 	<td> <b>Score </b></td>
 </tr>
 
-	
+
 <c:forEach begin="0" end="${fn:length(nameTop10Array) - 1}" var="index">
    <tr>
    	  <td>${index+1}</td>
@@ -42,7 +42,6 @@ ${currentScore}
       <td><c:out value="${scoreTop10Array[index]}"/></td>
    </tr>
 </c:forEach>
-
 </table>
 
 

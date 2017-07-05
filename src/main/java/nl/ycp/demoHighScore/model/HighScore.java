@@ -1,10 +1,4 @@
-package nl.ycp.demoHighScore;
-
-
-
-
-
-
+package nl.ycp.demohighscore.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,19 +14,19 @@ public class HighScore {
 	public Long getId() {
 	    return id;
 	}
-	
+
 	public void setId(Long id){
 		this.id = id;
 	}
-	
-	
-	
-    
+
+
+
+
 	private int oldHighScore = 0;
 	private int score;
 	private String date;
 	private String name;
-	
+
 	public int getScore() {
 		return score;
 	}
@@ -65,8 +59,8 @@ public class HighScore {
 		this.name = name;
 	}
 
-	
 
-	
+
+
 
 }
